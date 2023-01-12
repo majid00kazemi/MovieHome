@@ -1,0 +1,45 @@
+.nav-brand:hover {
+  opacity: 0.5;
+}
+.nav-brand {
+  transition: all 0.5s;
+}
+.nav-links {
+  margin: auto;
+}
+.navbar-nav .nav-item {
+  transition: all 0.5s;
+  margin-right: 0.25rem !important;
+}
+.navbar-nav .nav-item:hover {
+  opacity: 0.5;
+}
+.navbar {
+  align-content: center;
+  text-align: center;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+footer .row {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.about {
+  margin: auto;
+  width: 60% !important;
+}
+footer .nav-item a {
+  transition: all 0.5s;
+  color: rgba(173, 181, 189, 0.75) !important;
+}
+footer .nav-item a:hover {
+  color: white !important;
+}
+footer .nav-item {
+  margin-top: 0.25rem;
+}
+.body {
+  height: 100vh;
+}
