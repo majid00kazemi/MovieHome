@@ -15,6 +15,11 @@
 }
 .series-section > .card {
   background-color: rgb(26, 29, 32);
+  margin: 16px;
+}
+
+.movie-section > .card {
+  margin: 16px;
 }
 
 .summery {
