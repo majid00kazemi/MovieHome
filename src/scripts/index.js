@@ -31,9 +31,5 @@ function showMovies(data) {
     carouselImg.src = `${IMG_URL + poster_path}`;
     carousel.appendChild(carouselImg);
     carouselContainer.appendChild(carousel);
-    if (index === 10) {
-      return;
-    } else {
-    }
   });
 }
