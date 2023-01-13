@@ -17,8 +17,8 @@ function getMovies(url) {
 }
 
 function showMovies(data) {
-  data.forEach((movei, index) => {
-    const { title, poster_path } = movei;
+  data.forEach((movie, index) => {
+    const { title, poster_path } = movie;
     const carousel = document.createElement("div");
     const carouselImg = document.createElement("img");
     if (index == 0) {
