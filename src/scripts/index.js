@@ -13,6 +13,9 @@ function getMovies(url) {
     .then((data) => {
       showMovies(data.results);
       console.log(data.results);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
 
@@ -31,5 +34,9 @@ function showMovies(data) {
     carouselImg.src = `${IMG_URL + poster_path}`;
     carousel.appendChild(carouselImg);
     carouselContainer.appendChild(carousel);
+
+    carousel.addEventListener("click", () => {
+      console.log(title);
+    });
   });
 }

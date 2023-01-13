@@ -2,3 +2,7 @@
   height: 46rem !important;
   object-fit: contain;
 }
+
+.carousel-item:hover {
+  cursor: pointer;
+}
