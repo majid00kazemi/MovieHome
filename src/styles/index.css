@@ -6,3 +6,20 @@
 .carousel-item:hover {
   cursor: pointer;
 }
+.main-content {
+  margin-top: 26px;
+}
+.see-more {
+  position: absolute;
+  bottom: 16px;
+}
+.series-section > .card {
+  background-color: rgb(26, 29, 32);
+}
+
+.summery {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
