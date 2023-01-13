@@ -1,0 +1,4 @@
+.carousel-item img {
+  height: 46rem !important;
+  object-fit: contain;
+}
