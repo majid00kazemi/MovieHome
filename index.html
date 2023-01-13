@@ -14,9 +14,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/styles/all.css" />
+    <link rel="stylesheet" href="src/styles/index.css" />
   </head>
   <body data-bs-theme="dark">
-    <nav class="navbar bg-body-tertiary navbar-expand-lg">
+    <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand nav-brand" href="#">
           <img
@@ -83,9 +84,50 @@
         </div>
       </div>
     </nav>
-    <!--  -->
 
-    <div class="body"></div>
+    <!-- Body -->
+
+    <section>
+      <div
+        id="carouselExampleSlidesOnly"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-touch="false"
+      >
+        <div class="carousel-inner"></div>
+      </div>
+    </section>
+
+    <section class="container main-content">
+      <div class="row">
+        <!-- Movie section -->
+        <div class="col-md-8 movie-section">
+          <h2>Movies</h2>
+        </div>
+        <!-- Series section -->
+        <div class="col-md-4 series-section">
+          <h2>Series</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Body -->
+
+    <!-- Page -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Page -->
     <!-- Footer -->
     <div class="container">
       <footer class="py-3">
@@ -153,5 +195,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="src/scripts/all.js"></script>
+    <script src="src/scripts/index.js"></script>
   </body>
 </html>
