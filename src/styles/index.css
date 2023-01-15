@@ -9,10 +9,7 @@
 .main-content {
   margin-top: 26px;
 }
-.see-more {
-  position: absolute;
-  bottom: 16px;
-}
+
 .series-section > .card {
   background-color: rgb(26, 29, 32);
   margin: 16px;
