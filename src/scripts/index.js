@@ -22,8 +22,8 @@ getMovies(TOP_MOVIES_URL);
 getLatestMovies(LATEST_URL);
 getLatestSeries(LATEST_URL_SERIES);
 
-function getMovies(url) {
-  fetch(url)
+async function getMovies(url) {
+  await fetch(url)
     .then((res) => res.json())
     .then((data) => {
       showTopMovieCarousel(data.results);
@@ -68,8 +68,8 @@ function getLatestMovies(url) {
     });
 }
 
-function getLatestSeries(url) {
-  fetch(url)
+async function getLatestSeries(url) {
+  await fetch(url)
     .then((res) => res.json())
     .then((data) => {
       showLatestSeries(data.results);
@@ -102,7 +102,7 @@ function showLatestMovies(data) {
       col_detail.classList.add("col-md-8");
       cardBody.classList.add("card-body", "d-flex", "flex-column");
       cardTitle.classList.add("card-title");
-      cardText.classList.add("card-text");
+      cardText.classList.add("card-text", "summery-movies");
       button.classList.add("btn", "btn-primary", "align-self-end", "see-more");
 
       img.src = `${IMG_URL + poster_path}`;
