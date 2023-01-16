@@ -7,7 +7,7 @@ const TOP_MOVIES_URL =
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const IMG_URL_ORIGINAL = "https://image.tmdb.org/t/p/original";
 
-let PAGE = 2;
+let PAGE = 1;
 
 let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
 
