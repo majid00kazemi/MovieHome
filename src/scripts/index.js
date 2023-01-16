@@ -11,6 +11,10 @@ let PAGE = 1;
 
 let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
 
+function updateLink(page) {
+  LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${page}&${API_KEY}`;
+}
+
 const LATEST_URL_SERIES =
   BASE_URL +
   "/discover/tv?" +
@@ -197,7 +201,7 @@ function getPges(current) {
   }
   pageLinkPrev.addEventListener("click", () => {
     PAGE--;
-    LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+    updateLink(PAGE);
     MoviesSection.innerHTML = "<h2>Movies</h2>";
     getLatestMovies(LATEST_URL);
     backToTop();
@@ -216,7 +220,7 @@ function getPges(current) {
 
     pageLink.addEventListener("click", () => {
       PAGE = i;
-      LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+      updateLink(PAGE);
       MoviesSection.innerHTML = "<h2>Movies</h2>";
       getLatestMovies(LATEST_URL);
       backToTop();
@@ -238,7 +242,7 @@ function getPges(current) {
 
     pageLink.addEventListener("click", () => {
       PAGE = i;
-      LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+      updateLink(PAGE);
       MoviesSection.innerHTML = "<h2>Movies</h2>";
       getLatestMovies(LATEST_URL);
       backToTop();
@@ -260,7 +264,7 @@ function getPges(current) {
 
   pageItemNext.addEventListener("click", () => {
     PAGE++;
-    LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+    updateLink(PAGE);
     MoviesSection.innerHTML = "<h2>Movies</h2>";
     getLatestMovies(LATEST_URL);
     backToTop();
