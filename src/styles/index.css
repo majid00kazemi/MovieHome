@@ -31,7 +31,12 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-
+.page-item {
+  cursor: pointer;
+}
+.pagination {
+  flex-wrap: wrap;
+}
 #btn-back-to-top {
   position: fixed;
   bottom: 40px;
