@@ -31,6 +31,9 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.page-item {
+  cursor: pointer;
+}
 
 #btn-back-to-top {
   position: fixed;

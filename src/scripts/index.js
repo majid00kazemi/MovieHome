@@ -1,12 +1,15 @@
 const API_KEY = "api_key=04a874772b13520f53772f609285a97e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const TOP_MOVIES_URL =
-  BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
+  BASE_URL +
+  "/discover/movie?sort_by=popularity.desc&include_adult=false&" +
+  API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const IMG_URL_ORIGINAL = "https://image.tmdb.org/t/p/original";
 
-const LATEST_URL =
-  BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
+let PAGE = 2;
+
+let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
 
 const LATEST_URL_SERIES =
   BASE_URL +
@@ -17,6 +20,7 @@ const LATEST_URL_SERIES =
 const carouselContainer = document.querySelector(".carousel-inner");
 const MoviesSection = document.querySelector(".movie-section");
 const seriesSection = document.querySelector(".series-section");
+const pageContainer = document.querySelector(".pagination");
 
 getMovies(TOP_MOVIES_URL);
 getLatestMovies(LATEST_URL);
@@ -61,7 +65,7 @@ function getLatestMovies(url) {
     .then((res) => res.json())
     .then((data) => {
       showLatestMovies(data.results);
-      // console.log(data);
+      getPges(data.page);
     })
     .catch((error) => {
       console.log(error);
@@ -73,7 +77,7 @@ async function getLatestSeries(url) {
     .then((res) => res.json())
     .then((data) => {
       showLatestSeries(data.results);
-      console.log(data);
+      // console.log(data);
     })
     .catch((error) => {
       console.log(error);
@@ -170,9 +174,101 @@ function showLatestSeries(data) {
   });
 }
 
+function getPges(current) {
+  pageContainer.innerHTML = "";
+  let nextPages = current + 5 > 500 ? 500 : current + 5;
+
+  let prevPages = current - 5 < 1 ? 1 : current - 5;
+
+  const pageItemPrev = document.createElement("li");
+  const pageLinkPrev = document.createElement("a");
+
+  pageItemPrev.classList.add("page-item");
+  pageLinkPrev.classList.add("page-link");
+
+  pageLinkPrev.textContent = "Prev";
+  pageItemPrev.appendChild(pageLinkPrev);
+  pageContainer.appendChild(pageItemPrev);
+
+  if (current > 1) {
+    pageItemPrev.classList.remove("disabled");
+  } else {
+    pageItemPrev.classList.add("disabled");
+  }
+  pageLinkPrev.addEventListener("click", () => {
+    PAGE--;
+    LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+    MoviesSection.innerHTML = "<h2>Movies</h2>";
+    getLatestMovies(LATEST_URL);
+    backToTop();
+  });
+
+  for (let i = prevPages; i < current; i++) {
+    const pageItem = document.createElement("li");
+    const pageLink = document.createElement("a");
+
+    pageItem.classList.add("page-item");
+    pageLink.classList.add("page-link");
+
+    pageLink.textContent = i;
+    pageItem.appendChild(pageLink);
+    pageContainer.appendChild(pageItem);
+
+    pageLink.addEventListener("click", () => {
+      PAGE = i;
+      LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+      MoviesSection.innerHTML = "<h2>Movies</h2>";
+      getLatestMovies(LATEST_URL);
+      backToTop();
+    });
+  }
+
+  for (let i = current; i <= nextPages; i++) {
+    const pageItem = document.createElement("li");
+    const pageLink = document.createElement("a");
+    if (i === current) {
+      pageItem.classList.add("active");
+    }
+    pageItem.classList.add("page-item");
+    pageLink.classList.add("page-link");
+
+    pageLink.textContent = i;
+    pageItem.appendChild(pageLink);
+    pageContainer.appendChild(pageItem);
+
+    pageLink.addEventListener("click", () => {
+      PAGE = i;
+      LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+      MoviesSection.innerHTML = "<h2>Movies</h2>";
+      getLatestMovies(LATEST_URL);
+      backToTop();
+    });
+  }
+
+  const pageItemNext = document.createElement("li");
+  const pageLinkNext = document.createElement("a");
+
+  pageItemNext.classList.add("page-item");
+  pageLinkNext.classList.add("page-link");
+  if (current === 500) {
+    pageLinkNext.classList.add("disabled");
+  }
+
+  pageLinkNext.textContent = "Next";
+  pageItemNext.appendChild(pageLinkNext);
+  pageContainer.appendChild(pageItemNext);
+
+  pageItemNext.addEventListener("click", () => {
+    PAGE++;
+    LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+    MoviesSection.innerHTML = "<h2>Movies</h2>";
+    getLatestMovies(LATEST_URL);
+    backToTop();
+  });
+}
+
 let mybutton = document.getElementById("btn-back-to-top");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
   scrollFunction();
 };
@@ -186,7 +282,7 @@ function scrollFunction() {
     mybutton.style.visibility = "0";
   }
 }
-// When the user clicks on the button, scroll to the top of the document
+
 mybutton.addEventListener("click", backToTop);
 
 function backToTop() {
