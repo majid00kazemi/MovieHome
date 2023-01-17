@@ -21,6 +21,85 @@ const LATEST_URL_SERIES =
   API_KEY +
   "&language=en&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate&with_status=0&with_type=0";
 
+const genresList = [
+  {
+    id: 28,
+    name: "Action",
+  },
+  {
+    id: 12,
+    name: "Adventure",
+  },
+  {
+    id: 16,
+    name: "Animation",
+  },
+  {
+    id: 35,
+    name: "Comedy",
+  },
+  {
+    id: 80,
+    name: "Crime",
+  },
+  {
+    id: 99,
+    name: "Documentary",
+  },
+  {
+    id: 18,
+    name: "Drama",
+  },
+  {
+    id: 10751,
+    name: "Family",
+  },
+  {
+    id: 14,
+    name: "Fantasy",
+  },
+  {
+    id: 36,
+    name: "History",
+  },
+  {
+    id: 27,
+    name: "Horror",
+  },
+  {
+    id: 10402,
+    name: "Music",
+  },
+  {
+    id: 9648,
+    name: "Mystery",
+  },
+  {
+    id: 10749,
+    name: "Romance",
+  },
+  {
+    id: 878,
+    name: "Science Fiction",
+  },
+  {
+    id: 10770,
+    name: "TV Movie",
+  },
+  {
+    id: 53,
+    name: "Thriller",
+  },
+  {
+    id: 10752,
+    name: "War",
+  },
+  {
+    id: 37,
+    name: "Western",
+  },
+];
+
 const carouselContainer = document.querySelector(".carousel-inner");
 const MoviesSection = document.querySelector(".movie-section");
 const seriesSection = document.querySelector(".series-section");
@@ -157,8 +236,9 @@ function showLatestMovies(data) {
       button.textContent = "See More";
       imdbRate.textContent = `${vote_average}/10`;
       releaseContainer.textContent = `Release Date: ${release_date}`;
-      langContainer.textContent = `Language: ${original_language}`;
-      genresContainer.textContent = `Genres: ${genre_ids}`;
+      langContainer.textContent = `Language: ${original_language.toUpperCase()}`;
+
+      genresContainer.textContent = `Genres: ${setGenre(genre_ids)}`;
 
       detailsContainer.appendChild(imdbContainer);
       detailsContainer.appendChild(releaseContainer);
@@ -346,4 +426,14 @@ mybutton.addEventListener("click", backToTop);
 function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+
+function setGenre(genreArr) {
+  let found = "";
+  genreArr.forEach((el) => {
+    genresList.forEach((genre) => {
+      if (genre.id == el) found += ` ${genre.name},`;
+    });
+  });
+  return found.slice(0, -1);
 }
