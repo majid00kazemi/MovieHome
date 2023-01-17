@@ -37,6 +37,13 @@
 .pagination {
   flex-wrap: wrap;
 }
+.imdb img {
+  width: 40px;
+  margin-right: 4px;
+}
+.card-images {
+  height: 100%;
+}
 #btn-back-to-top {
   position: fixed;
   bottom: 40px;

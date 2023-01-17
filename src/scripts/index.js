@@ -90,7 +90,15 @@ async function getLatestSeries(url) {
 
 function showLatestMovies(data) {
   data.forEach((movie) => {
-    const { title, poster_path, overview } = movie;
+    const {
+      title,
+      poster_path,
+      overview,
+      vote_average,
+      release_date,
+      original_language,
+      genre_ids,
+    } = movie;
     if (poster_path == null) {
     } else {
       const card = document.createElement("div");
@@ -102,26 +110,68 @@ function showLatestMovies(data) {
       const cardTitle = document.createElement("h5");
       const cardText = document.createElement("p");
       const button = document.createElement("a");
+      const detailsContainer = document.createElement("div");
+      const imdbContainer = document.createElement("div");
+      const imdbImg = document.createElement("img");
+      const imdbRate = document.createElement("span");
+      const releaseContainer = document.createElement("div");
+      const langContainer = document.createElement("div");
+      const genresContainer = document.createElement("div");
+      const type = document.createElement("span");
 
       card.classList.add("card", "mb-3");
       row.classList.add("row", "g-0");
       col_img.classList.add("col-md-4");
-      img.classList.add("img-fluid", "rounded-start");
+      img.classList.add("img-fluid", "rounded-start", "card-images");
       col_detail.classList.add("col-md-8");
       cardBody.classList.add("card-body", "d-flex", "flex-column");
       cardTitle.classList.add("card-title");
       cardText.classList.add("card-text", "summery-movies");
-      button.classList.add("btn", "btn-primary", "align-self-end", "see-more");
+      button.classList.add(
+        "btn",
+        "btn-primary",
+        "align-self-end",
+        "see-more",
+        "mt-xl-5"
+      );
+      detailsContainer.classList.add("details");
+      imdbRate.classList.add("text-muted");
+      type.classList.add("badge", "text-bg-primary", "mt-2", "ms-2");
+      imdbContainer.classList.add(
+        "d-flex",
+        "align-items-center",
+        "justify-content-start",
+        "flex-row",
+        "imdb"
+      );
+      releaseContainer.classList.add("release-date", "text-muted");
+      langContainer.classList.add("lang", "text-muted");
+      genresContainer.classList.add("genres", "text-muted");
+
+      imdbImg.src = "src/imgs/imdb-big.png";
+      type.textContent = "Movie";
 
       img.src = `${IMG_URL + poster_path}`;
       cardTitle.textContent = title;
       cardText.textContent = overview;
       button.textContent = "See More";
+      imdbRate.textContent = `${vote_average}/10`;
+      releaseContainer.textContent = `Release Date: ${release_date}`;
+      langContainer.textContent = `Language: ${original_language}`;
+      genresContainer.textContent = `Genres: ${genre_ids}`;
 
+      detailsContainer.appendChild(imdbContainer);
+      detailsContainer.appendChild(releaseContainer);
+      detailsContainer.appendChild(langContainer);
+      detailsContainer.appendChild(genresContainer);
+      imdbContainer.appendChild(imdbImg);
+      imdbContainer.appendChild(imdbRate);
       col_img.appendChild(img);
       cardBody.appendChild(cardTitle);
       cardBody.appendChild(cardText);
+      cardBody.appendChild(detailsContainer);
       cardBody.appendChild(button);
+      col_detail.appendChild(type);
       col_detail.appendChild(cardBody);
 
       card.appendChild(row);
@@ -147,26 +197,30 @@ function showLatestSeries(data) {
       const cardTitle = document.createElement("h5");
       const cardText = document.createElement("p");
       const button = document.createElement("a");
+      const type = document.createElement("span");
 
       card.classList.add("card", "mb-3");
       row.classList.add("row", "g-0");
       col_img.classList.add("col-md-4");
-      img.classList.add("img-fluid", "rounded-start");
+      img.classList.add("img-fluid", "rounded-start", "card-images");
       col_detail.classList.add("col-md-8");
       cardBody.classList.add("card-body", "d-flex", "flex-column");
       cardTitle.classList.add("card-title");
       cardText.classList.add("card-text", "summery");
       button.classList.add("btn", "btn-primary", "align-self-end", "see-more");
+      type.classList.add("badge", "text-bg-success", "mt-2", "ms-2");
 
       img.src = `${IMG_URL + poster_path}`;
       cardTitle.textContent = original_name;
       cardText.textContent = overview;
       button.textContent = "See More";
+      type.textContent = "Series";
 
       col_img.appendChild(img);
       cardBody.appendChild(cardTitle);
       cardBody.appendChild(cardText);
       cardBody.appendChild(button);
+      col_detail.appendChild(type);
       col_detail.appendChild(cardBody);
 
       card.appendChild(row);
