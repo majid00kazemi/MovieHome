@@ -100,10 +100,13 @@
           <div class="filter-items">
             <label for="year" class="form-label">Year:</label>
             <input
-              type="text"
-              class="form-control text-light bg-dark mb-3"
+              type="number"
+              class="form-control year-number text-light bg-dark mb-3"
               id="year"
               placeholder="1900 - 2023"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="4"
+              min="0"
             />
 
             <label for="iautoSizingSelect" class="form-label">Language:</label>
