@@ -1043,8 +1043,10 @@ async function getMovies(url) {
   try {
     loading.style.display = "flex";
     filterContainer.style.display = "none";
+    pageContainer.style.display = "none";
     const res = await axios.get(url);
     dummy.style.display = "none";
+    pageContainer.style.display = "flex";
     filterContainer.style.display = "block";
     loading.style.display = "none";
     console.log(res.data.page);
@@ -1052,6 +1054,7 @@ async function getMovies(url) {
     getPges(res.data.page);
   } catch (error) {
     loading.style.display = "none";
+    pageContainer.style.display = "none";
     filterContainer.style.display = "none";
     alertDialog.style.display = "flex";
     alertDialog.textContent = `${error.message}. Please Refresh`;
@@ -1142,7 +1145,7 @@ function getPges(current) {
     updateLink(PAGE);
     movieContainer.innerHTML = "";
     getMovies(LATEST_URL);
-    backToTop();
+    backToTopp();
   });
 
   for (let i = prevPages; i < current; i++) {
@@ -1161,7 +1164,7 @@ function getPges(current) {
       updateLink(PAGE);
       movieContainer.innerHTML = "";
       getMovies(LATEST_URL);
-      backToTop();
+      backToTopp();
     });
   }
 
@@ -1183,7 +1186,7 @@ function getPges(current) {
       updateLink(PAGE);
       movieContainer.innerHTML = "";
       getMovies(LATEST_URL);
-      backToTop();
+      backToTopp();
     });
   }
   const pageItemNext = document.createElement("li");
@@ -1204,6 +1207,10 @@ function getPges(current) {
     updateLink(PAGE);
     movieContainer.innerHTML = "";
     getMovies(LATEST_URL);
-    backToTop();
+    backToTopp();
   });
+}
+function backToTopp() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
