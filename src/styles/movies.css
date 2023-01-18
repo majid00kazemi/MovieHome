@@ -35,3 +35,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+@media screen and (min-width: 768px) {
+  .filter-container {
+    position: sticky;
+    top: 90px;
+  }
+}
