@@ -1042,19 +1042,38 @@ const carouselContainer = document.querySelector(".carousel-inner");
 const MoviesSection = document.querySelector(".movie-section");
 const seriesSection = document.querySelector(".series-section");
 const pageContainer = document.querySelector(".pagination");
+const loading = document.querySelector(".loading");
+const alertDialog = document.querySelector(".alert");
+const paginationContainer = document.querySelector(".pagination-container");
+const dummy = document.querySelector(".dummy");
 
 getMovies(TOP_MOVIES_URL);
 getLatestMovies(LATEST_URL);
 getLatestSeries(LATEST_URL_SERIES);
 
 async function getMovies(url) {
+  loading.style.display = "flex";
+  MoviesSection.style.display = "none";
+  seriesSection.style.display = "none";
+  paginationContainer.style.display = "none";
+  alertDialog.style.display = "none";
   await fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      dummy.style.display = "none";
+      loading.style.display = "none";
+      MoviesSection.style.display = "block";
+      seriesSection.style.display = "block";
       showTopMovieCarousel(data.results);
       // console.log(data.results);
     })
     .catch((error) => {
+      loading.style.display = "none";
+      alertDialog.style.display = "flex";
+      alertDialog.textContent = `${error.message}. Please Refresh`;
+      setTimeout(() => {
+        alertDialog.style.display = "none";
+      }, 8000);
       console.log(error);
     });
 }
@@ -1081,14 +1100,23 @@ function showTopMovieCarousel(data) {
   });
 }
 
-function getLatestMovies(url) {
-  fetch(url)
+async function getLatestMovies(url) {
+  loading.style.display = "flex";
+  await fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      loading.style.display = "none";
+      paginationContainer.style.display = "block";
       showLatestMovies(data.results);
       getPges(data.page);
     })
     .catch((error) => {
+      loading.style.display = "none";
+      alertDialog.style.display = "flex";
+      alertDialog.textContent = `${error.message}. Please Refresh`;
+      setTimeout(() => {
+        alertDialog.style.display = "none";
+      }, 8000);
       console.log(error);
     });
 }
@@ -1101,6 +1129,11 @@ async function getLatestSeries(url) {
       // console.log(data);
     })
     .catch((error) => {
+      alertDialog.style.display = "flex";
+      alertDialog.textContent = `${error.message}. Please Refresh`;
+      setTimeout(() => {
+        alertDialog.style.display = "none";
+      }, 8000);
       console.log(error);
     });
 }
@@ -1261,7 +1294,6 @@ function getPges(current) {
 
   pageItemPrev.classList.add("page-item");
   pageLinkPrev.classList.add("page-link");
-
   pageLinkPrev.textContent = "Prev";
   pageItemPrev.appendChild(pageLinkPrev);
   pageContainer.appendChild(pageItemPrev);

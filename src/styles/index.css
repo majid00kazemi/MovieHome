@@ -46,7 +46,7 @@
 }
 #btn-back-to-top {
   position: fixed;
-  bottom: 40px;
+  bottom: 75px;
   left: 50%;
   right: 50%;
   visibility: hidden;
@@ -59,6 +59,30 @@
   justify-content: center;
   z-index: 1;
   opacity: 0;
+}
+.loading {
+  display: none;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.spinner-grow {
+  margin: auto;
+}
+.dummy {
+  height: 80vh;
+}
+
+.alert-container {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.alert {
+  width: fit-content;
+  margin: auto;
+  display: none;
 }
 
 html::-webkit-scrollbar {
