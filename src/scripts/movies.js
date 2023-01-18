@@ -1031,3 +1031,23 @@ const loading = document.querySelector(".loading");
 const alertDialog = document.querySelector(".alert");
 const paginationContainer = document.querySelector(".pagination-container");
 const dummy = document.querySelector(".dummy");
+
+getMovies();
+
+async function getMovies() {
+  try {
+    loading.style.display = "flex";
+    const res = await axios.get(LATEST_URL);
+    dummy.style.display = "none";
+    loading.style.display = "none";
+    console.log(res.data.results);
+  } catch (e) {
+    loading.style.display = "none";
+    alertDialog.style.display = "flex";
+    alertDialog.textContent = `${error.message}. Please Refresh`;
+    setTimeout(() => {
+      alertDialog.style.display = "none";
+    }, 8000);
+    console.log(e);
+  }
+}

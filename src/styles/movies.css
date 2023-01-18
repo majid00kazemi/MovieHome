@@ -1,0 +1,9 @@
+.filter-container {
+  background-color: rgb(30, 34, 37);
+
+  padding: 16px;
+  border-radius: 20px;
+}
+.genre-button {
+  border-radius: 50px;
+}
