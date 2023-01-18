@@ -1,9 +1,31 @@
 .filter-container {
   background-color: rgb(30, 34, 37);
-
+  z-index: 0;
   padding: 16px;
   border-radius: 20px;
+  height: fit-content;
+  top: 90px;
 }
 .genre-button {
   border-radius: 50px;
+}
+.navbar {
+  z-index: 1;
+}
+.summery {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 60px;
+}
+.card {
+  width: 18rem;
+}
+.movie-container .btn {
+  border-radius: 35px;
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
 }

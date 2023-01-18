@@ -43,9 +43,6 @@ footer .nav-item {
 .body {
   height: 100vh;
 }
-.pagination-container {
-  display: none;
-}
 
 html::-webkit-scrollbar {
   border: 5px solid transparent;

@@ -1031,18 +1031,28 @@ const loading = document.querySelector(".loading");
 const alertDialog = document.querySelector(".alert");
 const paginationContainer = document.querySelector(".pagination-container");
 const dummy = document.querySelector(".dummy");
+const genreContainer = document.querySelector(".genre-container");
+const langFilter = document.querySelector(".form-select");
+const filterBtn = document.querySelector(".btn-search");
+const movieContainer = document.querySelector(".movie-container");
+const filterContainer = document.querySelector(".filter-container");
 
-getMovies();
+getMovies(LATEST_URL);
 
-async function getMovies() {
+async function getMovies(url) {
   try {
     loading.style.display = "flex";
-    const res = await axios.get(LATEST_URL);
+    filterContainer.style.display = "none";
+    const res = await axios.get(url);
     dummy.style.display = "none";
+    filterContainer.style.display = "block";
     loading.style.display = "none";
-    console.log(res.data.results);
-  } catch (e) {
+    console.log(res.data.page);
+    createMovieCards(res.data.results);
+    getPges(res.data.page);
+  } catch (error) {
     loading.style.display = "none";
+    filterContainer.style.display = "none";
     alertDialog.style.display = "flex";
     alertDialog.textContent = `${error.message}. Please Refresh`;
     setTimeout(() => {
@@ -1050,4 +1060,150 @@ async function getMovies() {
     }, 8000);
     console.log(e);
   }
+}
+createGenreChips();
+filterBtn.addEventListener("click", () => {
+  const chips = document.querySelectorAll(".btn-check:checked");
+  console.log(chips);
+  chips.forEach((chip) => {
+    console.log(chip.id);
+  });
+});
+
+createLangSelect();
+function createGenreChips() {
+  genresList.forEach((genre) => {
+    const chip = `<input
+    type="checkbox"
+    class="btn-check"
+    id="${genre.id}"
+    autocomplete="off"
+  />
+  <label
+    class="btn mb-2 me-1 btn-outline-primary genre-button"
+    for="${genre.id}"
+    >${genre.name}</label
+  >`;
+    genreContainer.innerHTML += chip;
+  });
+}
+
+function createLangSelect() {
+  langList.forEach((lang) => {
+    const select = `<option value="${lang.iso_639_1}">${lang.english_name}</option>`;
+
+    langFilter.innerHTML += select;
+  });
+}
+
+function createMovieCards(data) {
+  data.forEach((movie) => {
+    const { title, poster_path, overview } = movie;
+    if (poster_path == null) {
+    } else {
+      const innerHtml = `<div class="card mb-3" style="width: 18rem">
+      <img src="${IMG_URL + poster_path}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text summery ">
+          ${overview}
+        </p>
+        <a href="#" class="btn btn-outline-primary">See More</a>
+      </div>
+    </div>`;
+
+      movieContainer.innerHTML += innerHtml;
+    }
+  });
+}
+
+function getPges(current) {
+  pageContainer.innerHTML = "";
+  let nextPages = current + 5 > 500 ? 500 : current + 5;
+
+  let prevPages = current - 5 < 1 ? 1 : current - 5;
+
+  const pageItemPrev = document.createElement("li");
+  const pageLinkPrev = document.createElement("a");
+
+  pageItemPrev.classList.add("page-item");
+  pageLinkPrev.classList.add("page-link");
+  pageLinkPrev.textContent = "Prev";
+  pageItemPrev.appendChild(pageLinkPrev);
+  pageContainer.appendChild(pageItemPrev);
+
+  if (current > 1) {
+    pageItemPrev.classList.remove("disabled");
+  } else {
+    pageItemPrev.classList.add("disabled");
+  }
+  pageLinkPrev.addEventListener("click", () => {
+    PAGE--;
+    updateLink(PAGE);
+    movieContainer.innerHTML = "";
+    getMovies(LATEST_URL);
+    backToTop();
+  });
+
+  for (let i = prevPages; i < current; i++) {
+    const pageItem = document.createElement("li");
+    const pageLink = document.createElement("a");
+
+    pageItem.classList.add("page-item");
+    pageLink.classList.add("page-link");
+
+    pageLink.textContent = i;
+    pageItem.appendChild(pageLink);
+    pageContainer.appendChild(pageItem);
+
+    pageLink.addEventListener("click", () => {
+      PAGE = i;
+      updateLink(PAGE);
+      movieContainer.innerHTML = "";
+      getMovies(LATEST_URL);
+      backToTop();
+    });
+  }
+
+  for (let i = current; i <= nextPages; i++) {
+    const pageItem = document.createElement("li");
+    const pageLink = document.createElement("a");
+    if (i === current) {
+      pageItem.classList.add("active");
+    }
+    pageItem.classList.add("page-item");
+    pageLink.classList.add("page-link");
+
+    pageLink.textContent = i;
+    pageItem.appendChild(pageLink);
+    pageContainer.appendChild(pageItem);
+
+    pageLink.addEventListener("click", () => {
+      PAGE = i;
+      updateLink(PAGE);
+      movieContainer.innerHTML = "";
+      getMovies(LATEST_URL);
+      backToTop();
+    });
+  }
+  const pageItemNext = document.createElement("li");
+  const pageLinkNext = document.createElement("a");
+
+  pageItemNext.classList.add("page-item");
+  pageLinkNext.classList.add("page-link");
+  if (current === 500) {
+    pageLinkNext.classList.add("disabled");
+  }
+
+  pageLinkNext.textContent = "Next";
+  pageItemNext.appendChild(pageLinkNext);
+  pageContainer.appendChild(pageItemNext);
+
+  pageItemNext.addEventListener("click", () => {
+    PAGE++;
+    updateLink(PAGE);
+    movieContainer.innerHTML = "";
+    getMovies(LATEST_URL);
+    backToTop();
+  });
 }
