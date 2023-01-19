@@ -2,6 +2,8 @@ const API_KEY = "api_key=04a874772b13520f53772f609285a97e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
+let PAGE = 1;
+
 const params = new URLSearchParams(window.location.search);
 const nameItem = params.get("name");
 const itemContainer = document.querySelector(".item-container");
