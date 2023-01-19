@@ -1088,7 +1088,7 @@ function showTopMovieCarousel(data) {
     }
     carousel.classList.add("carousel-item");
     carouselImg.classList.add("d-block", "w-100");
-    carousel.setAttribute("data-bs-interval", 2000);
+    carousel.setAttribute("data-bs-interval", 5000);
 
     carouselImg.src = `${IMG_URL_ORIGINAL + poster_path}`;
     carousel.appendChild(carouselImg);
