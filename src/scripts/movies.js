@@ -2,12 +2,16 @@ const API_KEY = "api_key=04a874772b13520f53772f609285a97e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-let PAGE = 1;
+// let PAGE = 1;
 
-let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
-
+// let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
+let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&${API_KEY}`;
 function updateLink(page) {
-  LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${page}&${API_KEY}`;
+  // LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${page}&${API_KEY}`;
+  LATEST_URL += `&page=${page}`;
+}
+function filterLink(url) {
+  LATEST_URL = url;
 }
 const genresList = [
   {
@@ -89,11 +93,6 @@ const genresList = [
 ];
 
 const langList = [
-  {
-    iso_639_1: "xx",
-    english_name: "No Language",
-    name: "No Language",
-  },
   {
     iso_639_1: "aa",
     english_name: "Afar",
@@ -1036,6 +1035,7 @@ const langFilter = document.querySelector(".form-select");
 const filterBtn = document.querySelector(".btn-search");
 const movieContainer = document.querySelector(".movie-container");
 const filterContainer = document.querySelector(".filter-container");
+const yearInput = document.querySelector(".year-number");
 
 getMovies(LATEST_URL);
 
@@ -1046,12 +1046,11 @@ async function getMovies(url) {
     pageContainer.style.display = "none";
     const res = await axios.get(url);
     dummy.style.display = "none";
+    loading.style.display = "none";
+    createMovieCards(res.data.results);
+    getPges(res.data.page, res.data.total_pages);
     pageContainer.style.display = "flex";
     filterContainer.style.display = "block";
-    loading.style.display = "none";
-    console.log(res.data.page);
-    createMovieCards(res.data.results);
-    getPges(res.data.page);
   } catch (error) {
     loading.style.display = "none";
     pageContainer.style.display = "none";
@@ -1065,15 +1064,36 @@ async function getMovies(url) {
   }
 }
 createGenreChips();
+createLangSelect();
+
+// https://api.themoviedb.org/3/discover/movie?api_key=04a874772b13520f53772f609285a97e&language=en&sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2023&with_genres=28,53
 filterBtn.addEventListener("click", () => {
   const chips = document.querySelectorAll(".btn-check:checked");
-  console.log(chips);
+  let filterUrl = `${BASE_URL}/discover/movie?${API_KEY}&sort_by=popularity.desc`;
+  let genre = ``;
+  const language = langFilter.value;
+  const year = yearInput.value;
   chips.forEach((chip) => {
-    console.log(chip.id);
+    genre += `${chip.id},`;
   });
+  genre = genre.slice(0, -1);
+  if (!genre == "") {
+    filterUrl += `&with_genres=${genre}`;
+  }
+  if (!year == "") {
+    filterUrl += `&primary_release_year=${year}`;
+  }
+  console.log(language);
+  if (language == "Choose...") {
+  } else {
+    filterUrl += `&with_original_language=${language}`;
+  }
+  filterLink(filterUrl);
+  movieContainer.innerHTML = "";
+  getMovies(LATEST_URL);
+  console.log(filterUrl);
 });
 
-createLangSelect();
 function createGenreChips() {
   genresList.forEach((genre) => {
     const chip = `<input
@@ -1120,9 +1140,10 @@ function createMovieCards(data) {
   });
 }
 
-function getPges(current) {
+function getPges(current, total) {
   pageContainer.innerHTML = "";
-  let nextPages = current + 5 > 500 ? 500 : current + 5;
+
+  let nextPages = current + 5 > total ? total : current + 5;
 
   let prevPages = current - 5 < 1 ? 1 : current - 5;
 
@@ -1194,7 +1215,7 @@ function getPges(current) {
 
   pageItemNext.classList.add("page-item");
   pageLinkNext.classList.add("page-link");
-  if (current === 500) {
+  if (current === total) {
     pageLinkNext.classList.add("disabled");
   }
 
