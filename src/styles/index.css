@@ -44,22 +44,7 @@
 .card-images {
   height: 100%;
 }
-#btn-back-to-top {
-  position: fixed;
-  bottom: 75px;
-  left: 50%;
-  right: 50%;
-  visibility: hidden;
-  color: rgb(11, 94, 215);
-  background-color: black;
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-  opacity: 0;
-}
+
 .loading {
   display: none;
   position: absolute;

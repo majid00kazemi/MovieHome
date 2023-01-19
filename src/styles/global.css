@@ -43,7 +43,28 @@ footer .nav-item {
 .body {
   height: 100vh;
 }
+#btn-back-to-top {
+  position: block;
+  visibility: hidden;
+  color: rgb(11, 94, 215);
+  background-color: black;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0;
+}
+.up-button-container {
+  width: 100%;
+  position: fixed;
+  bottom: 75px;
+}
 
+.up-button-container button {
+  margin: auto;
+}
 html::-webkit-scrollbar {
   border: 5px solid transparent;
   border-radius: 100px;
