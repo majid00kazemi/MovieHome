@@ -1122,7 +1122,7 @@ function createLangSelect() {
 
 function createMovieCards(data) {
   data.forEach((movie) => {
-    const { title, poster_path, overview } = movie;
+    const { id, title, poster_path, overview } = movie;
     if (poster_path == null) {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
       <img src="src/imgs/not-found.webp" class="card-img-top" alt="..." />
@@ -1136,6 +1136,13 @@ function createMovieCards(data) {
     </div>`;
 
       movieContainer.innerHTML += innerHtml;
+
+      const seemoreBtn = document.querySelector(".see-more");
+      seemoreBtn.addEventListener("click", () => {
+        let params = new URLSearchParams();
+        params.append("id", id);
+        location.href = "item.HTML?" + params.toString();
+      });
     } else {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
       <img src="${IMG_URL + poster_path}" class="card-img-top" alt="..." />
@@ -1144,11 +1151,17 @@ function createMovieCards(data) {
         <p class="card-text summery ">
           ${overview}
         </p>
-        <a href="#" class="btn btn-outline-primary">See More</a>
+        <a href="item.html?id=${id}" class="btn btn-outline-primary see-more">See More</a>
       </div>
     </div>`;
 
       movieContainer.innerHTML += innerHtml;
+      // const seemoreBtn = document.querySelector(".see-more");
+      // seemoreBtn.addEventListener("click", () => {
+      //   let params = new URLSearchParams();
+      //   params.append("id", id);
+      //   location.href = "item.HTML?" + params.toString();
+      // });
     }
   });
 }

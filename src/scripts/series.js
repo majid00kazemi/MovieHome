@@ -1107,7 +1107,7 @@ function createLangSelect() {
 
 function createMovieCards(data) {
   data.forEach((movie) => {
-    const { name, poster_path, overview } = movie;
+    const { id, name, poster_path, overview } = movie;
 
     if (poster_path == null) {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
@@ -1117,7 +1117,7 @@ function createMovieCards(data) {
         <p class="card-text summery ">
           ${overview}
         </p>
-        <a href="#" class="btn btn-outline-primary">See More</a>
+        <a href="item.html?id=${id}" class="btn btn-outline-primary">See More</a>
       </div>
     </div>`;
 
