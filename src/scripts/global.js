@@ -1,4 +1,15 @@
 let mybutton = document.getElementById("btn-back-to-top");
+const searchInput = document.querySelector(".search-input");
+const searchBtn = document.querySelector(".btn-search-item");
+const formSearch = document.querySelector(".search-form");
+
+formSearch.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(searchInput.value);
+  let params = new URLSearchParams();
+  params.append("name", searchInput.value);
+  location.href = "search.html?" + params.toString();
+});
 
 window.onscroll = function () {
   scrollFunction();

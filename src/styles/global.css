@@ -66,6 +66,37 @@ footer .nav-item {
 .up-button-container button {
   margin: auto;
 }
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.spinner-grow {
+  margin: auto;
+}
+.dummy {
+  height: 80vh;
+}
+
+.alert-container {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.alert {
+  width: fit-content;
+  margin: auto;
+  display: none;
+}
+.page-item {
+  cursor: pointer;
+}
+.pagination {
+  flex-wrap: wrap;
+}
 html::-webkit-scrollbar {
   border: 5px solid transparent;
   border-radius: 100px;
