@@ -12,6 +12,7 @@ const pageContainer = document.querySelector(".pagination");
 const paginationContainer = document.querySelector(".pagination-container");
 const searchItem = document.querySelector(".search-item");
 
+searchItem.value = nameItem;
 searchItem.addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
     let params = new URLSearchParams();
@@ -28,8 +29,6 @@ function updateLink(page) {
   SEARCH_URL_SERIES += `&page=${page}`;
 }
 
-console.log(nameItem);
-console.log(SEARCH_URL_MOVIE);
 getMovies(SEARCH_URL_MOVIE);
 getSeries(SEARCH_URL_SERIES);
 
@@ -39,7 +38,7 @@ async function getMovies(url) {
     dummy.style.display = "block";
     pageContainer.style.display = "none";
     const res = await axios.get(url);
-    console.log(res);
+
     createMovieCards(res.data.results);
     getPges(res.data.page, res.data.total_pages);
     dummy.style.display = "none";
@@ -60,9 +59,7 @@ async function getMovies(url) {
 async function getSeries(url) {
   try {
     const res = await axios.get(url);
-    console.log(res);
     createSeriesCard(res.data.results);
-    // getPges(res.data.page, res.data.total_pages);
   } catch (error) {
     alertDialog.style.display = "flex";
     alertDialog.textContent = `${error.message}. Please Refresh`;

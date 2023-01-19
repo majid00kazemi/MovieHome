@@ -1032,7 +1032,6 @@ async function getMovies(url) {
     const res = await axios.get(url);
     dummy.style.display = "none";
     loading.style.display = "none";
-    console.log(res);
     createMovieCards(res.data.results);
     getPges(res.data.page, res.data.total_pages);
     pageContainer.style.display = "flex";
@@ -1069,7 +1068,6 @@ filterBtn.addEventListener("click", () => {
   if (!year == "") {
     filterUrl += `&primary_release_year=${year}`;
   }
-  console.log(language);
   if (language == "Choose...") {
   } else {
     filterUrl += `&with_original_language=${language}`;
@@ -1077,7 +1075,6 @@ filterBtn.addEventListener("click", () => {
   filterLink(filterUrl);
   movieContainer.innerHTML = "";
   getMovies(LATEST_URL);
-  console.log(filterUrl);
 });
 
 function createGenreChips() {

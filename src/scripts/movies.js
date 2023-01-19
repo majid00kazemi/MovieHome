@@ -1084,7 +1084,6 @@ filterBtn.addEventListener("click", () => {
   if (!year == "") {
     filterUrl += `&primary_release_year=${year}`;
   }
-  console.log(language);
   if (language == "Choose...") {
   } else {
     filterUrl += `&with_original_language=${language}`;
@@ -1092,7 +1091,6 @@ filterBtn.addEventListener("click", () => {
   filterLink(filterUrl);
   movieContainer.innerHTML = "";
   getMovies(LATEST_URL);
-  console.log(filterUrl);
 });
 
 function createGenreChips() {

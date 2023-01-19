@@ -1,6 +1,5 @@
 let mybutton = document.getElementById("btn-back-to-top");
 const searchInput = document.querySelector(".search-input");
-const searchBtn = document.querySelector(".btn-search-item");
 const formSearch = document.querySelector(".search-form");
 
 formSearch.addEventListener("submit", (e) => {
