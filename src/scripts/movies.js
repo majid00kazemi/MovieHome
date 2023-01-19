@@ -1036,7 +1036,7 @@ const filterBtn = document.querySelector(".btn-search");
 const movieContainer = document.querySelector(".movie-container");
 const filterContainer = document.querySelector(".filter-container");
 const yearInput = document.querySelector(".year-number");
-
+dummy.style.display = "none";
 getMovies(LATEST_URL);
 
 async function getMovies(url) {
@@ -1044,6 +1044,7 @@ async function getMovies(url) {
     loading.style.display = "flex";
     filterContainer.style.display = "none";
     pageContainer.style.display = "none";
+    dummy.style.display = "block";
     const res = await axios.get(url);
     dummy.style.display = "none";
     loading.style.display = "none";
