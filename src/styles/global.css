@@ -53,13 +53,14 @@ footer .nav-item {
   width: 38px;
   display: flex;
   justify-content: center;
-  z-index: 1;
+
   opacity: 0;
 }
 .up-button-container {
   width: 100%;
   position: fixed;
   bottom: 75px;
+  z-index: 2;
 }
 
 .up-button-container button {
