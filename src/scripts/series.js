@@ -2,12 +2,8 @@ const API_KEY = "api_key=04a874772b13520f53772f609285a97e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-// let PAGE = 1;
-
-// let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
-let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&${API_KEY}`;
+let LATEST_URL = `${BASE_URL}/discover/tv?sort_by=first_air_date.desc&include_adult=false&${API_KEY}`;
 function updateLink(page) {
-  // LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${page}&${API_KEY}`;
   LATEST_URL += `&page=${page}`;
 }
 function filterLink(url) {
@@ -15,12 +11,8 @@ function filterLink(url) {
 }
 const genresList = [
   {
-    id: 28,
-    name: "Action",
-  },
-  {
-    id: 12,
-    name: "Adventure",
+    id: 10759,
+    name: "Action & Adventure",
   },
   {
     id: 16,
@@ -47,44 +39,36 @@ const genresList = [
     name: "Family",
   },
   {
-    id: 14,
-    name: "Fantasy",
-  },
-  {
-    id: 36,
-    name: "History",
-  },
-  {
-    id: 27,
-    name: "Horror",
-  },
-  {
-    id: 10402,
-    name: "Music",
+    id: 10762,
+    name: "Kids",
   },
   {
     id: 9648,
     name: "Mystery",
   },
   {
-    id: 10749,
-    name: "Romance",
+    id: 10763,
+    name: "News",
   },
   {
-    id: 878,
-    name: "Science Fiction",
+    id: 10764,
+    name: "Reality",
   },
   {
-    id: 10770,
-    name: "TV Movie",
+    id: 10765,
+    name: "Sci-Fi & Fantasy",
   },
   {
-    id: 53,
-    name: "Thriller",
+    id: 10766,
+    name: "Soap",
   },
   {
-    id: 10752,
-    name: "War",
+    id: 10767,
+    name: "Talk",
+  },
+  {
+    id: 10768,
+    name: "War & Politics",
   },
   {
     id: 37,
@@ -1033,7 +1017,7 @@ const dummy = document.querySelector(".dummy");
 const genreContainer = document.querySelector(".genre-container");
 const langFilter = document.querySelector(".form-select");
 const filterBtn = document.querySelector(".btn-search");
-const movieContainer = document.querySelector(".movie-container");
+const movieContainer = document.querySelector(".series-container");
 const filterContainer = document.querySelector(".filter-container");
 const yearInput = document.querySelector(".year-number");
 dummy.style.display = "none";
@@ -1048,6 +1032,7 @@ async function getMovies(url) {
     const res = await axios.get(url);
     dummy.style.display = "none";
     loading.style.display = "none";
+    console.log(res);
     createMovieCards(res.data.results);
     getPges(res.data.page, res.data.total_pages);
     pageContainer.style.display = "flex";
@@ -1070,7 +1055,7 @@ createLangSelect();
 // https://api.themoviedb.org/3/discover/movie?api_key=04a874772b13520f53772f609285a97e&language=en&sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2023&with_genres=28,53
 filterBtn.addEventListener("click", () => {
   const chips = document.querySelectorAll(".btn-check:checked");
-  let filterUrl = `${BASE_URL}/discover/movie?${API_KEY}&sort_by=popularity.desc`;
+  let filterUrl = `${BASE_URL}/discover/tv?${API_KEY}&sort_by=popularity.desc`;
   let genre = ``;
   const language = langFilter.value;
   const year = yearInput.value;
@@ -1122,12 +1107,13 @@ function createLangSelect() {
 
 function createMovieCards(data) {
   data.forEach((movie) => {
-    const { title, poster_path, overview } = movie;
+    const { name, poster_path, overview } = movie;
+
     if (poster_path == null) {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
       <img src="src/imgs/not-found.webp" class="card-img-top" alt="..." />
       <div class="card-body">
-        <h5 class="card-title">${title}</h5>
+        <h5 class="card-title">${name}</h5>
         <p class="card-text summery ">
           ${overview}
         </p>
@@ -1140,7 +1126,7 @@ function createMovieCards(data) {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
       <img src="${IMG_URL + poster_path}" class="card-img-top" alt="..." />
       <div class="card-body">
-        <h5 class="card-title">${title}</h5>
+        <h5 class="card-title">${name}</h5>
         <p class="card-text summery ">
           ${overview}
         </p>
