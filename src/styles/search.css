@@ -1,0 +1,33 @@
+.search-container {
+  margin: auto;
+  margin-top: 100px;
+  width: 100%;
+  position: sticky;
+  top: 90px;
+  z-index: 2;
+}
+
+.search-container input {
+  margin: auto;
+  display: block;
+  text-align: center;
+  width: 50%;
+  border-radius: 10px;
+}
+.summery {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 60px;
+}
+.card img {
+  height: 25rem;
+}
+.item-container .btn {
+  border-radius: 35px;
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+}

@@ -14,8 +14,9 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/styles/all.css" />
-    <link rel="stylesheet" href="src/styles/index.css" />
-    <script defer src="src/scripts/index.js"></script>
+    <script defer src="src/scripts/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/styles/search.css" />
   </head>
   <body data-bs-theme="dark">
     <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
@@ -46,7 +47,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-links">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
+              <a class="nav-link" href="index.html"
                 ><i class="fa-light fa-house"></i> Home</a
               >
             </li>
@@ -79,8 +80,7 @@
         </div>
       </div>
     </nav>
-
-    <!-- Body -->
+    <!-- End navbar -->
 
     <section class="alert-container">
       <div class="alert alert-danger" role="alert"></div>
@@ -92,43 +92,21 @@
       </div>
     </section>
 
-    <section>
-      <div
-        id="carouselExampleSlidesOnly"
-        class="carousel slide"
-        data-bs-ride="carousel"
-        data-bs-touch="false"
-      >
-        <div class="carousel-inner"></div>
-      </div>
-    </section>
-
-    <section class="container main-content">
-      <div class="row">
-        <!-- Movie section -->
-        <div class="col-md-8 movie-section">
-          <h2>Movies</h2>
-        </div>
-        <!-- Series section -->
-        <div class="col-md-4 series-section">
-          <h2>Series</h2>
-        </div>
-      </div>
+    <section class="container search-container">
+      <input
+        type="text"
+        placeholder="Search..."
+        class="form-control search-item text-light bg-dark"
+      />
     </section>
 
     <section class="dummy"></section>
 
-    <!-- Body -->
-
-    <div class="up-button-container">
-      <button
-        type="button"
-        class="btn btn-floating btn-lg"
-        id="btn-back-to-top"
-      >
-        <i class="fas fa-arrow-up"></i>
-      </button>
-    </div>
+    <section class="container mt-4">
+      <section
+        class="item-container d-flex justify-content-evenly flex-wrap col-md-12"
+      ></section>
+    </section>
 
     <!-- Page -->
     <nav aria-label="Page navigation " class="pagination-container">
@@ -139,6 +117,16 @@
       </ul>
     </nav>
     <!-- Page -->
+    <div class="up-button-container">
+      <button
+        type="button"
+        class="btn btn-floating btn-lg"
+        id="btn-back-to-top"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </div>
+
     <!-- Footer -->
     <div class="container">
       <footer class="py-3">

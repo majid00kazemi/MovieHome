@@ -2,6 +2,8 @@ const API_KEY = "api_key=04a874772b13520f53772f609285a97e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
+let PAGE = 1;
+
 let LATEST_URL = `${BASE_URL}/discover/tv?sort_by=first_air_date.desc&include_adult=false&${API_KEY}`;
 function updateLink(page) {
   LATEST_URL += `&page=${page}`;
@@ -1032,7 +1034,6 @@ async function getMovies(url) {
     const res = await axios.get(url);
     dummy.style.display = "none";
     loading.style.display = "none";
-    console.log(res);
     createMovieCards(res.data.results);
     getPges(res.data.page, res.data.total_pages);
     pageContainer.style.display = "flex";
@@ -1052,7 +1053,6 @@ async function getMovies(url) {
 createGenreChips();
 createLangSelect();
 
-// https://api.themoviedb.org/3/discover/movie?api_key=04a874772b13520f53772f609285a97e&language=en&sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2023&with_genres=28,53
 filterBtn.addEventListener("click", () => {
   const chips = document.querySelectorAll(".btn-check:checked");
   let filterUrl = `${BASE_URL}/discover/tv?${API_KEY}&sort_by=popularity.desc`;
@@ -1067,9 +1067,8 @@ filterBtn.addEventListener("click", () => {
     filterUrl += `&with_genres=${genre}`;
   }
   if (!year == "") {
-    filterUrl += `&primary_release_year=${year}`;
+    filterUrl += `&first_air_date_year=${year}`;
   }
-  console.log(language);
   if (language == "Choose...") {
   } else {
     filterUrl += `&with_original_language=${language}`;
@@ -1077,7 +1076,6 @@ filterBtn.addEventListener("click", () => {
   filterLink(filterUrl);
   movieContainer.innerHTML = "";
   getMovies(LATEST_URL);
-  console.log(filterUrl);
 });
 
 function createGenreChips() {

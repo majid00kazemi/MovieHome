@@ -2,12 +2,10 @@ const API_KEY = "api_key=04a874772b13520f53772f609285a97e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-// let PAGE = 1;
+let PAGE = 1;
 
-// let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${PAGE}&${API_KEY}`;
 let LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&${API_KEY}`;
 function updateLink(page) {
-  // LATEST_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&page=${page}&${API_KEY}`;
   LATEST_URL += `&page=${page}`;
 }
 function filterLink(url) {
@@ -1067,7 +1065,6 @@ async function getMovies(url) {
 createGenreChips();
 createLangSelect();
 
-// https://api.themoviedb.org/3/discover/movie?api_key=04a874772b13520f53772f609285a97e&language=en&sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2023&with_genres=28,53
 filterBtn.addEventListener("click", () => {
   const chips = document.querySelectorAll(".btn-check:checked");
   let filterUrl = `${BASE_URL}/discover/movie?${API_KEY}&sort_by=popularity.desc`;
@@ -1084,7 +1081,6 @@ filterBtn.addEventListener("click", () => {
   if (!year == "") {
     filterUrl += `&primary_release_year=${year}`;
   }
-  console.log(language);
   if (language == "Choose...") {
   } else {
     filterUrl += `&with_original_language=${language}`;
@@ -1092,7 +1088,6 @@ filterBtn.addEventListener("click", () => {
   filterLink(filterUrl);
   movieContainer.innerHTML = "";
   getMovies(LATEST_URL);
-  console.log(filterUrl);
 });
 
 function createGenreChips() {

@@ -1088,7 +1088,7 @@ function showTopMovieCarousel(data) {
     }
     carousel.classList.add("carousel-item");
     carouselImg.classList.add("d-block", "w-100");
-    carousel.setAttribute("data-bs-interval", 2000);
+    carousel.setAttribute("data-bs-interval", 5000);
 
     carouselImg.src = `${IMG_URL_ORIGINAL + poster_path}`;
     carousel.appendChild(carouselImg);
@@ -1373,29 +1373,6 @@ function getPges(current) {
     getLatestMovies(LATEST_URL);
     backToTop();
   });
-}
-
-let mybutton = document.getElementById("btn-back-to-top");
-
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.visibility = "visible";
-    mybutton.style.opacity = "1";
-  } else {
-    mybutton.style.visibility = "hidden";
-    mybutton.style.visibility = "0";
-  }
-}
-
-mybutton.addEventListener("click", backToTop);
-
-function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
 }
 
 function setGenre(genreArr) {
