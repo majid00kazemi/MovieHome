@@ -1067,7 +1067,7 @@ filterBtn.addEventListener("click", () => {
     filterUrl += `&with_genres=${genre}`;
   }
   if (!year == "") {
-    filterUrl += `&primary_release_year=${year}`;
+    filterUrl += `&first_air_date_year=${year}`;
   }
   if (language == "Choose...") {
   } else {
