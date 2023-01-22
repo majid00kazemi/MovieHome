@@ -19,10 +19,12 @@
   border-radius: 20px;
   padding: 20px;
   padding-top: 50px;
+
   position: absolute;
   top: 290px;
 }
 .container {
+  margin: auto;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 150px;
 }
