@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MovieHome |</title>
+    <title>MovieHome</title>
     <link rel="icon" href="./src/imgs/icon.png" />
     <link rel="stylesheet" href="src/styles/global.css" />
     <link
@@ -14,8 +14,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/styles/all.css" />
+    <link rel="stylesheet" href="src/styles/global.css" />
+    <link rel="stylesheet" href="src/styles/itemM.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="src/scripts/item.js"></script>
+    <script defer src="src/scripts/itemM.js"></script>
   </head>
   <body data-bs-theme="dark">
     <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
@@ -66,14 +68,13 @@
               >
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex search-form" role="search">
             <input
-              class="form-control me-2 text-light bg-dark"
-              type="search"
+              class="form-control search-input me-2 text-light bg-dark"
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-primary" type="submit">
+            <button class="btn btn-outline-primary">
               <i class="fa-duotone fa-magnifying-glass search-logo"></i>
             </button>
           </form>
@@ -83,6 +84,66 @@
     <!-- End Nav -->
 
     <!-- Start body -->
+    <section class="alert-container">
+      <div class="alert alert-danger" role="alert"></div>
+    </section>
+
+    <section class="loading">
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </section>
+
+    <section class="dummy"></section>
+
+    <section class="container mt-5 movie-container">
+      <!-- <div class="row">
+        <div class="col-md-4">
+          <img
+            src="https://image.tmdb.org/t/p/w500//26yQPXymbWeCLKwcmyL8dRjAzth.jpg"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="name mt-2"><h3>Devotion</h3></div>
+          <div class="about-movie mt-2">
+            The harrowing true story of two elite US Navy fighter pilots during
+            the Korean War. Their heroic sacrifices would ultimately make them
+            the Navy's most celebrated wingmen.
+          </div>
+          <div class="duration mt-2">Duration : 139 min</div>
+          <div class="release-date ">Release Date : 2022/12/12</div>
+          <div class="rate ">
+            <div
+              class="d-flex align-items-center justify-content-start flex-row imdb"
+            >
+              <img src="src/imgs/imdb-big.png" /><span class="text-muted"
+                >8.6/10</span
+              >
+            </div>
+          </div>
+          <div class="budget ">Budget : $900000</div>
+          <div class="genres ">Genres : Commedy</div>
+          <div class="country ">Country : US</div>
+          <p class="mt-4">Companies:</p>
+          <div
+            class="text-bg-light row d-flex p-4 flex-row flex-wrap justify-content-around align-content-center border-2 shadow"
+          >
+            <img
+              src="https://image.tmdb.org/t/p/w500//xytTBODEy3p20ksHL4Ftxr483Iv.png"
+              alt=""
+              style="width: 20%"
+            />
+            <img
+              src="https://image.tmdb.org/t/p/w500//xytTBODEy3p20ksHL4Ftxr483Iv.png"
+              alt=""
+              style="width: 20%"
+            />
+          </div>
+        </div>
+      </div> -->
+    </section>
 
     <!-- End body -->
     <div class="up-button-container">
@@ -94,6 +155,7 @@
         <i class="fas fa-arrow-up"></i>
       </button>
     </div>
+
     <!-- Start Footer -->
     <div class="container">
       <footer class="py-3">

@@ -1065,7 +1065,6 @@ async function getMovies(url) {
       MoviesSection.style.display = "block";
       seriesSection.style.display = "block";
       showTopMovieCarousel(data.results);
-      // console.log(data.results);
     })
     .catch((error) => {
       loading.style.display = "none";
@@ -1080,7 +1079,7 @@ async function getMovies(url) {
 
 function showTopMovieCarousel(data) {
   data.forEach((movie, index) => {
-    const { title, poster_path } = movie;
+    const { id, title, poster_path } = movie;
     const carousel = document.createElement("div");
     const carouselImg = document.createElement("img");
     if (index == 0) {
@@ -1095,7 +1094,7 @@ function showTopMovieCarousel(data) {
     carouselContainer.appendChild(carousel);
 
     carousel.addEventListener("click", () => {
-      console.log(title);
+      location.href = `itemM.html?id=${id}`;
     });
   });
 }
@@ -1126,7 +1125,6 @@ async function getLatestSeries(url) {
     .then((res) => res.json())
     .then((data) => {
       showLatestSeries(data.results);
-      // console.log(data);
     })
     .catch((error) => {
       alertDialog.style.display = "flex";
@@ -1141,6 +1139,7 @@ async function getLatestSeries(url) {
 function showLatestMovies(data) {
   data.forEach((movie) => {
     const {
+      id,
       title,
       poster_path,
       overview,
@@ -1205,6 +1204,7 @@ function showLatestMovies(data) {
       cardTitle.textContent = title;
       cardText.textContent = overview;
       button.textContent = "See More";
+      button.href = `itemM.html?id=${id}`;
       imdbRate.textContent = `${vote_average}/10`;
       releaseContainer.textContent = `Release Date: ${release_date}`;
       langContainer.textContent = `Language: ${setLang(original_language)}`;

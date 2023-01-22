@@ -15,6 +15,7 @@ const paginationContainer = document.querySelector(".pagination-container");
 const searchItem = document.querySelector(".search-item");
 
 searchItem.value = nameItem;
+document.title = `MovieHome | ${nameItem}`;
 console.log(nameItem);
 searchItem.addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
@@ -90,7 +91,7 @@ if (nameItem == "") {
       <p class="card-text summery">
         ${overview}
       </p>
-      <a href="#" class="btn btn-outline-primary">See More</a>
+      <a href="itemM.html?id=${id}" class="btn btn-outline-primary">See More</a>
     </div>
   </div>`;
 

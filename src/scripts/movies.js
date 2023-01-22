@@ -1126,7 +1126,7 @@ function createMovieCards(data) {
         <p class="card-text summery ">
           ${overview}
         </p>
-        <a href="#" class="btn btn-outline-primary">See More</a>
+        <a href="itemM.html?id=${id}" class="btn btn-outline-primary">See More</a>
       </div>
     </div>`;
 
@@ -1146,7 +1146,7 @@ function createMovieCards(data) {
         <p class="card-text summery ">
           ${overview}
         </p>
-        <a href="item.html?id=${id}" class="btn btn-outline-primary see-more">See More</a>
+        <a href="itemM.html?id=${id}" class="btn btn-outline-primary see-more">See More</a>
       </div>
     </div>`;
 
