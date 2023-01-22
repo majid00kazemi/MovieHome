@@ -1,7 +1,7 @@
 .img-container {
   width: 100%;
   position: absolute;
-  top: 80px;
+  top: 65px;
   z-index: 1;
 }
 .img-container-inner {
@@ -9,7 +9,7 @@
   width: fit-content;
 }
 .img-container-inner img {
-  height: 250px;
+  height: 270px;
   width: 250px;
   border-radius: 50% !important;
   border: 15px solid rgb(33, 37, 41);
