@@ -1,0 +1,27 @@
+.img-container {
+  width: 100%;
+  position: absolute;
+  top: 80px;
+  z-index: 1;
+}
+.img-container-inner {
+  margin: auto;
+  width: fit-content;
+}
+.img-container-inner img {
+  height: 250px;
+  width: 250px;
+  border-radius: 50% !important;
+  border: 15px solid rgb(33, 37, 41);
+}
+.about-me-container {
+  background-color: rgb(0 0 0 / 30%);
+  border-radius: 20px;
+  padding: 20px;
+  padding-top: 50px;
+  position: absolute;
+  top: 290px;
+}
+.container {
+  position: relative;
+}

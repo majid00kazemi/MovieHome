@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MovieHome | Movies</title>
+    <title>MovieHome | About me</title>
     <link rel="icon" href="./src/imgs/icon.png" />
     <link rel="stylesheet" href="src/styles/global.css" />
     <link
@@ -13,11 +13,8 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="src/styles/aboutme.css" />
     <link rel="stylesheet" href="src/styles/all.css" />
-    <link rel="stylesheet" href="src/styles/index.css" />
-    <link rel="stylesheet" href="src/styles/movies.css" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script defer src="src/scripts/movies.js"></script>
   </head>
   <body data-bs-theme="dark">
     <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
@@ -53,7 +50,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="movies.html" aria-current="page"
+              <a class="nav-link" href="movies.html"
                 ><i class="fa-light fa-camera-movie"></i> Movies</a
               >
             </li>
@@ -63,7 +60,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="aboutme.html"
+              <a class="nav-link active" aria-current="page" href="aboutme.html"
                 ><i class="fa-light fa-user"></i> About Me</a
               >
             </li>
@@ -81,75 +78,43 @@
         </div>
       </div>
     </nav>
-    <!-- Body Start -->
-    <section class="alert-container">
-      <div class="alert alert-danger" role="alert"></div>
-    </section>
+    <!-- End nav -->
 
-    <section class="loading">
-      <div class="spinner-grow text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <!-- Body -->
+    <section class="container mt-4">
+      <div class="img-container">
+        <div class="img-container-inner">
+          <img
+            src="src/imgs/me.jpg"
+            alt="Majid-kazemi"
+            class="img-fluid rounded"
+          />
+        </div>
+      </div>
+      <div class="about-me-container text-center">
+        <p>
+          Hi i'm majid kazemi. <br />
+          i dont know waht to say i just want to complete this website for my
+          project.
+          <br />
+          by the way this is my first complete project <br />
+          it's not perfect but it is something :)))) and i built it with my own
+          knowledge not watching youtube video and build my website step by step
+          with that. :)
+        </p>
+        <p>Some lorem text:</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, harum
+          pariatur delectus consequatur est velit cumque quibusdam deleniti vel
+          culpa eveniet, numquam illum molestias quod perspiciatis neque
+          deserunt quas possimus!
+        </p>
       </div>
     </section>
     <section class="dummy"></section>
+    <!-- Body -->
 
-    <section class="container main-content">
-      <div class="flex-row-reverse row">
-        <section class="filter-container shadow col-md-3 mb-4">
-          <h5 class="text-center">Movie Filter</h5>
-          <div class="filter-items">
-            <label for="year" class="form-label">Year:</label>
-            <input
-              type="number"
-              class="form-control year-number text-light bg-dark mb-3"
-              id="year"
-              placeholder="1900 - 2023"
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-              maxlength="4"
-              min="0"
-            />
-
-            <label for="iautoSizingSelect" class="form-label">Language:</label>
-            <select
-              class="form-select text-light bg-dark mb-3"
-              id="autoSizingSelect"
-            >
-              <option selected>Choose...</option>
-            </select>
-            <p class="mb-2">Select Genres:</p>
-            <div class="genre-container"></div>
-            <div class="button-container d-flex justify-content-center">
-              <a href="#" class="btn btn-search btn-primary mt-5">Search</a>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="movie-container d-flex justify-content-evenly flex-wrap col-md-9"
-        ></section>
-      </div>
-    </section>
-
-    <div class="up-button-container">
-      <button
-        type="button"
-        class="btn btn-floating btn-lg"
-        id="btn-back-to-top"
-      >
-        <i class="fas fa-arrow-up"></i>
-      </button>
-    </div>
-
-    <!-- Page -->
-    <nav aria-label="Page navigation " class="pagination-container">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link prev-button">Previous</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Page -->
-    <!-- Body End -->
+    <!-- Start footer -->
     <div class="container">
       <footer class="py-3">
         <div class="row">
