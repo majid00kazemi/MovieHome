@@ -14,6 +14,9 @@ const pageContainer = document.querySelector(".pagination");
 const paginationContainer = document.querySelector(".pagination-container");
 const searchItem = document.querySelector(".search-item");
 
+let foundArrayMovie = [];
+let foundArraySeries = [];
+
 searchItem.value = nameItem;
 document.title = `MovieHome | ${nameItem}`;
 
@@ -33,19 +36,25 @@ if (nameItem == "") {
     SEARCH_URL_MOVIE += `&page=${page}`;
     SEARCH_URL_SERIES += `&page=${page}`;
   }
+  getData();
 
-  getMovies(SEARCH_URL_MOVIE);
-  getSeries(SEARCH_URL_SERIES);
-
-  async function getMovies(url) {
+  async function getData() {
     try {
       loading.style.display = "flex";
       dummy.style.display = "block";
       pageContainer.style.display = "none";
-      const res = await axios.get(url);
-
-      createMovieCards(res.data.results);
-      getPges(res.data.page, res.data.total_pages);
+      const resMovies = await axios.get(SEARCH_URL_MOVIE);
+      createMovieCards(resMovies.data.results);
+      getPges(resMovies.data.page, resMovies.data.total_pages);
+      const resSeries = await axios.get(SEARCH_URL_SERIES);
+      createSeriesCard(resSeries.data.results);
+      if (foundArrayMovie.length == 0 && foundArraySeries.length == 0) {
+        alertDialog.style.display = "flex";
+        alertDialog.textContent = `Nothing Found!`;
+        setTimeout(() => {
+          alertDialog.style.display = "none";
+        }, 8000);
+      }
       dummy.style.display = "none";
       loading.style.display = "none";
       pageContainer.style.display = "flex";
@@ -61,22 +70,8 @@ if (nameItem == "") {
     }
   }
 
-  async function getSeries(url) {
-    try {
-      const res = await axios.get(url);
-      createSeriesCard(res.data.results);
-    } catch (error) {
-      alertDialog.style.display = "flex";
-      alertDialog.textContent = `${error.message}. Please Refresh`;
-      setTimeout(() => {
-        alertDialog.style.display = "none";
-      }, 8000);
-      console.log(error);
-    }
-  }
-
   function createMovieCards(data) {
-    data.forEach((movie) => {
+    foundArrayMovie = data.map((movie) => {
       const { id, title, poster_path, overview } = movie;
       if (poster_path == null) {
         const innerhtml = `<div class="card mb-3" style="width: 18rem">
@@ -115,11 +110,12 @@ if (nameItem == "") {
 
         itemContainer.innerHTML += innerhtml;
       }
+      return { id: id };
     });
   }
 
   function createSeriesCard(data) {
-    data.forEach((series) => {
+    foundArraySeries = data.map((series) => {
       const { id, name, poster_path, overview } = series;
 
       if (poster_path == null) {
@@ -159,6 +155,7 @@ if (nameItem == "") {
 
         itemContainer.innerHTML += innerhtml;
       }
+      return { id: id };
     });
   }
 
@@ -241,6 +238,9 @@ if (nameItem == "") {
     pageItemNext.classList.add("page-item");
     pageLinkNext.classList.add("page-link");
     if (current === total) {
+      pageLinkNext.classList.add("disabled");
+    }
+    if (current === 1 && total === 0) {
       pageLinkNext.classList.add("disabled");
     }
 

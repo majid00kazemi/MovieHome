@@ -1232,6 +1232,9 @@ function getPges(current, total) {
   if (current === total) {
     pageLinkNext.classList.add("disabled");
   }
+  if (current === 1 && total === 0) {
+    pageLinkNext.classList.add("disabled");
+  }
 
   pageLinkNext.textContent = "Next";
   pageItemNext.appendChild(pageLinkNext);

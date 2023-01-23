@@ -1011,6 +1011,8 @@ const langList = [
   },
 ];
 
+let foundArray = [];
+
 const pageContainer = document.querySelector(".pagination");
 const loading = document.querySelector(".loading");
 const alertDialog = document.querySelector(".alert");
@@ -1104,7 +1106,7 @@ function createLangSelect() {
 }
 
 function createMovieCards(data) {
-  data.forEach((movie) => {
+  data.map((movie) => {
     const { id, name, poster_path, overview } = movie;
 
     if (poster_path == null) {
@@ -1134,6 +1136,7 @@ function createMovieCards(data) {
 
       movieContainer.innerHTML += innerHtml;
     }
+    return foundArray.append({ id });
   });
 }
 
@@ -1213,6 +1216,9 @@ function getPges(current, total) {
   pageItemNext.classList.add("page-item");
   pageLinkNext.classList.add("page-link");
   if (current === total) {
+    pageLinkNext.classList.add("disabled");
+  }
+  if (current === 1 && total === 0) {
     pageLinkNext.classList.add("disabled");
   }
 
