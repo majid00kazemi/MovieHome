@@ -46,6 +46,7 @@ function createDetails(data) {
     production_companies,
     release_date,
     vote_average,
+    spoken_languages,
     runtime,
   } = data;
 
@@ -82,7 +83,7 @@ function createDetails(data) {
       </div>
       <div class="budget ">Budget : $${budget}</div>
       <div class="genres ">Genres : ${setGenre(genres)}</div>
-      <div class="country ">Country : US</div>
+      <div class="country ">Language : ${setLang(spoken_languages)}</div>
     </div>
   </div>`;
 
@@ -92,6 +93,14 @@ function setGenre(genreArr) {
   let found = "";
   genreArr.forEach((el) => {
     found += ` ${el.name},`;
+  });
+  return found.slice(0, -1);
+}
+
+function setLang(lang) {
+  let found = ``;
+  lang.forEach((el) => {
+    found += ` ${el.english_name},`;
   });
   return found.slice(0, -1);
 }

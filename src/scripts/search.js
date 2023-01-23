@@ -16,7 +16,7 @@ const searchItem = document.querySelector(".search-item");
 
 searchItem.value = nameItem;
 document.title = `MovieHome | ${nameItem}`;
-console.log(nameItem);
+
 searchItem.addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
     let params = new URLSearchParams();

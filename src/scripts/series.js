@@ -1047,7 +1047,7 @@ async function getMovies(url) {
     setTimeout(() => {
       alertDialog.style.display = "none";
     }, 8000);
-    console.log(e);
+    console.log(error);
   }
 }
 createGenreChips();

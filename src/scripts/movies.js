@@ -1059,7 +1059,7 @@ async function getMovies(url) {
     setTimeout(() => {
       alertDialog.style.display = "none";
     }, 8000);
-    console.log(e);
+    console.log(error);
   }
 }
 createGenreChips();
@@ -1131,13 +1131,6 @@ function createMovieCards(data) {
     </div>`;
 
       movieContainer.innerHTML += innerHtml;
-
-      const seemoreBtn = document.querySelector(".see-more");
-      seemoreBtn.addEventListener("click", () => {
-        let params = new URLSearchParams();
-        params.append("id", id);
-        location.href = "item.HTML?" + params.toString();
-      });
     } else {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
       <img src="${IMG_URL + poster_path}" class="card-img-top" alt="..." />
