@@ -1236,7 +1236,7 @@ function showLatestMovies(data) {
 
 function showLatestSeries(data) {
   data.forEach((series) => {
-    const { original_name, poster_path, overview } = series;
+    const { id, original_name, poster_path, overview } = series;
     if (poster_path == null) {
     } else {
       const card = document.createElement("div");
@@ -1266,6 +1266,7 @@ function showLatestSeries(data) {
       cardText.textContent = overview;
       button.textContent = "See More";
       type.textContent = "Series";
+      button.href = `itemS.html?id=${id}`;
 
       col_img.appendChild(img);
       cardBody.appendChild(cardTitle);

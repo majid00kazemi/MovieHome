@@ -91,7 +91,7 @@ if (nameItem == "") {
       <p class="card-text summery">
         ${overview}
       </p>
-      <a href="itemM.html?id=${id}" class="btn btn-outline-primary">See More</a>
+      <a href="itemM.html?id=${id}" class="btn btn-outline-primary">See Moressss</a>
     </div>
   </div>`;
 
@@ -109,7 +109,7 @@ if (nameItem == "") {
       <p class="card-text summery">
         ${overview}
       </p>
-      <a href="#" class="btn btn-outline-primary">See More</a>
+      <a href="itemM.html?id=${id}" class="btn btn-outline-primary">See More</a>
     </div>
   </div>`;
 
@@ -135,7 +135,7 @@ if (nameItem == "") {
     <p class="card-text summery">
       ${overview}
     </p>
-    <a href="#" class="btn btn-outline-primary">See More</a>
+    <a href="itemS.html?id=${id}" class="btn btn-outline-primary">See More</a>
   </div>
 </div>`;
 
@@ -153,7 +153,7 @@ if (nameItem == "") {
             <p class="card-text summery">
               ${overview}
             </p>
-            <a href="#" class="btn btn-outline-primary">See More</a>
+            <a href="itemS.html?id=${id}" class="btn btn-outline-primary">See More</a>
           </div>
         </div>`;
 

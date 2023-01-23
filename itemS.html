@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MovieHome | About me</title>
+    <title>MovieHome</title>
     <link rel="icon" href="./src/imgs/icon.png" />
     <link rel="stylesheet" href="src/styles/global.css" />
+    <link rel="stylesheet" href="src/styles/itemM.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="src/styles/aboutme.css" />
     <link rel="stylesheet" href="src/styles/all.css" />
+    <link rel="stylesheet" href="src/styles/global.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="src/scripts/itemS.js"></script>
   </head>
   <body data-bs-theme="dark">
     <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
@@ -60,7 +63,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="aboutme.html"
+              <a class="nav-link" href="aboutme.html"
                 ><i class="fa-light fa-user"></i> About Me</a
               >
             </li>
@@ -78,41 +81,24 @@
         </div>
       </div>
     </nav>
-    <!-- End nav -->
+    <!-- End Nav -->
 
-    <!-- Body -->
-    <section class="container mt-4">
-      <div class="img-container">
-        <div class="img-container-inner">
-          <img
-            src="src/imgs/me.jpg"
-            alt="Majid-kazemi"
-            class="img-fluid rounded"
-          />
-        </div>
-      </div>
-      <div class="about-me-container text-center">
-        <p>
-          Hi i'm majid kazemi. <br />
-          i dont know waht to say i just want to complete this website for my
-          project.
-          <br />
-          by the way this is my first complete project <br />
-          it's not perfect but it is something :)))) and i built it with my own
-          knowledge not watching youtube video and build my website step by step
-          with that. :)
-        </p>
-        <p>Some lorem text:</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, harum
-          pariatur delectus consequatur est velit cumque quibusdam deleniti vel
-          culpa eveniet, numquam illum molestias quod perspiciatis neque
-          deserunt quas possimus!
-        </p>
+    <!-- Start body -->
+    <section class="alert-container">
+      <div class="alert alert-danger" role="alert"></div>
+    </section>
+
+    <section class="loading">
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </section>
+
     <section class="dummy"></section>
-    <!-- Body -->
+
+    <section class="container mt-5 series-container"></section>
+
+    <!-- End body -->
     <div class="up-button-container">
       <button
         type="button"
@@ -123,7 +109,7 @@
       </button>
     </div>
 
-    <!-- Start footer -->
+    <!-- Start Footer -->
     <div class="container">
       <footer class="py-3">
         <div class="row">
