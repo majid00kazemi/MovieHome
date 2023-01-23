@@ -1011,7 +1011,7 @@ const langList = [
   },
 ];
 
-let foundArray = [];
+let found = [];
 
 const pageContainer = document.querySelector(".pagination");
 const loading = document.querySelector(".loading");
@@ -1038,6 +1038,13 @@ async function getMovies(url) {
     loading.style.display = "none";
     createMovieCards(res.data.results);
     getPges(res.data.page, res.data.total_pages);
+    if (found.length == 0) {
+      alertDialog.style.display = "flex";
+      alertDialog.textContent = `Nothing Found!`;
+      setTimeout(() => {
+        alertDialog.style.display = "none";
+      }, 8000);
+    }
     pageContainer.style.display = "flex";
     filterContainer.style.display = "block";
   } catch (error) {
@@ -1106,7 +1113,7 @@ function createLangSelect() {
 }
 
 function createMovieCards(data) {
-  data.map((movie) => {
+  found = data.map((movie) => {
     const { id, name, poster_path, overview } = movie;
 
     if (poster_path == null) {
@@ -1136,7 +1143,7 @@ function createMovieCards(data) {
 
       movieContainer.innerHTML += innerHtml;
     }
-    return foundArray.append({ id });
+    return { id: id };
   });
 }
 

@@ -1023,6 +1023,8 @@ const langList = [
   },
 ];
 
+let found = [];
+
 const pageContainer = document.querySelector(".pagination");
 const loading = document.querySelector(".loading");
 const alertDialog = document.querySelector(".alert");
@@ -1048,6 +1050,13 @@ async function getMovies(url) {
     loading.style.display = "none";
     createMovieCards(res.data.results);
     getPges(res.data.page, res.data.total_pages);
+    if (found.length == 0) {
+      alertDialog.style.display = "flex";
+      alertDialog.textContent = `Nothing Found!`;
+      setTimeout(() => {
+        alertDialog.style.display = "none";
+      }, 8000);
+    }
     pageContainer.style.display = "flex";
     filterContainer.style.display = "block";
   } catch (error) {
@@ -1116,7 +1125,7 @@ function createLangSelect() {
 }
 
 function createMovieCards(data) {
-  data.forEach((movie) => {
+  found = data.map((movie) => {
     const { id, title, poster_path, overview } = movie;
     if (poster_path == null) {
       const innerHtml = `<div class="card mb-3" style="width: 18rem">
@@ -1144,13 +1153,8 @@ function createMovieCards(data) {
     </div>`;
 
       movieContainer.innerHTML += innerHtml;
-      // const seemoreBtn = document.querySelector(".see-more");
-      // seemoreBtn.addEventListener("click", () => {
-      //   let params = new URLSearchParams();
-      //   params.append("id", id);
-      //   location.href = "item.HTML?" + params.toString();
-      // });
     }
+    return { id: id };
   });
 }
 

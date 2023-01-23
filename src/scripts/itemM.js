@@ -12,7 +12,15 @@ const alertDialog = document.querySelector(".alert");
 const dummy = document.querySelector(".dummy");
 const container = document.querySelector(".movie-container");
 
-getMovie(MOVIE_URL);
+if (idItem == null) {
+  alertDialog.style.display = "flex";
+  alertDialog.textContent = `404 Go back!`;
+  setTimeout(() => {
+    alertDialog.style.display = "none";
+  }, 8000);
+} else {
+  getMovie(MOVIE_URL);
+}
 
 async function getMovie(url) {
   try {

@@ -5,6 +5,8 @@ const IMG_URL = "https://image.tmdb.org/t/p/original";
 const paramsSeries = new URLSearchParams(window.location.search);
 const idItem = paramsSeries.get("id");
 
+
+
 const Series_URL = `${BASE_URL}/tv/${idItem}?${API_KEY}`;
 
 const loading = document.querySelector(".loading");
@@ -12,8 +14,15 @@ const alertDialog = document.querySelector(".alert");
 const dummy = document.querySelector(".dummy");
 const container = document.querySelector(".series-container");
 
-getSeries(Series_URL);
-
+if (idItem == null) {
+  alertDialog.style.display = "flex";
+  alertDialog.textContent = `404 Go back!`;
+  setTimeout(() => {
+    alertDialog.style.display = "none";
+  }, 8000);
+} else {
+  getSeries(Series_URL);
+}
 async function getSeries(url) {
   try {
     loading.style.display = "flex";
